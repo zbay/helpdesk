@@ -1,0 +1,59 @@
+<html>
+   <body>
+   <h1>Your Current Archiving Rules</h1>
+		<h2>Edit/Delete Rules</h2>	
+		<link src="resource_data.html" rel="data-editable data-deletable"/>
+		<table style="border: 2px solid black; text-align:center;" class="rules_table"> <!-- This table would use a database connection to load all of the user's archiving rules -->
+		<th>URL</th><th>Frequency</th><th>Archive links?</th><th>Save changes</th><th>Delete rule</th>
+		<tr>
+		<form action="resource_data.html" method="PATCH" class="rule_form">
+			<td><input type="text" name="url_to_archive" value="www.google.com"></input></td>
+			<td><select class="frequency">
+				<option value="hourly">Hourly</option>
+				<option value="daily" selected>Daily</option>
+				<option value="weekly">Weekly</option>
+				<option value="monthly">Monthly</option>
+			</select></td>
+			<td><input type="radio" name="links" value="Yes">Get links</input> <input type="radio" name="links" value="No" checked>Don't get links</input></td>
+			<td><input type="submit" value="Submit"/></td>
+			<td><input type="submit" value="Delete"/></td>
+		</form>
+		</tr>
+		<tr>
+		<form action="resource_data.html" method="PATCH" class="rule_form">
+			<td><input type="text" name="url_to_archive" value="www.yahoo.com"></input></td>
+			<td><select>
+				<option value="hourly">Hourly</option>
+				<option value="daily">Daily</option>
+				<option value="weekly" selected>Weekly</option>
+				<option value="monthly">Monthly</option>
+			</select></td>
+			<td><input type="radio" name="links" value="Yes" checked>Get links</input> <input type="radio" name="links" value="No">Don't get links</input></td>
+			<td><input type="submit" value="Submit"/></td>
+			<td><input type="submit" value="Delete"/></td>
+		</form>
+		</tr>
+		<tr>
+		<form action="resource_data.html" method="PATCH" class="rule-form">
+			<td><input type="text" name="url_to_archive" value="www.bing.com"></input></td>
+			<td><select>
+				<option value="hourly">Hourly</option>
+				<option value="daily">Daily</option>
+				<option value="weekly">Weekly</option>
+				<option value="monthly" selected>Monthly</option>
+			</select></td>
+			<td><input type="radio" name="links" value="Yes" checked>Get links</input> <input type="radio" name="links" value="No">Don't get links</input></td>
+			<td><input type="submit" value="Submit"/></td>
+			<td><input type="submit" value="Delete"/></td>
+		</form>
+		</tr>
+		</table>
+		<br />
+		<a href="hub.html">Return to the home page</a>
+		<style>
+		th, td{
+			border:1px solid black;
+		}
+		</style>
+   </body>
+</html>
