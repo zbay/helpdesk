@@ -1,0 +1,29 @@
+{
+	"archivedPages": [
+	{
+		"url": "sils.unc.edu/courses",
+		"date": "10/10/15",
+		"tags": ["sils", "unc", "courses", "schedule"]
+	},
+	{
+		"url": "sils.unc.edu/courses",
+		"date": "10/09/15",
+		"tags": ["sils", "unc", "courses", "schedule"]
+	},
+	{
+		"url": "sils.unc.edu/courses",
+		"date": "10/08/15",
+		"tags": ["sils", "unc", "courses", "schedule"]
+	},
+	{
+		"url": "sils.unc.edu/about",
+		"date": "10/09/15",
+		"tags": ["sils", "unc", "about"]
+	},
+	{
+		"url": "sils.unc.edu/program",
+		"date": "10/08/15",
+		"tags": ["sils", "unc", "program", "curriculum"]
+	}
+	]
+}

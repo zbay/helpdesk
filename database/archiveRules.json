@@ -1,0 +1,22 @@
+{
+	"archivingRules": [
+	{
+		"url": "www.google.com",
+		"frequency": "daily",
+		"getLinks": false,
+		"startDate": "10/29"
+	},
+	{
+		"url": "www.yahoo.com",
+		"frequency": "weekly",
+		"getLinks": true,
+		"startDate": "10/30"
+	},
+	{
+		"url": "www.bing.com",
+		"frequency": "yearly",
+		"getLinks": true,
+		"startDate": "10/31"
+	}
+	]
+}
