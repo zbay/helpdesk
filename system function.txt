@@ -1,0 +1,8 @@
+(1) User post urls, metadata(user generated): similar to post helprequest
+(2) User post rules referenced to urls: similar to post the priority of helprequest
+(3) Delete the urls and rules
+(4) Search the urls or archived rules: similar to search helpreqeusts
+(5) edit urls(user edit or update)
+(6) edit rules: similar to patch the priority of helprequest
+(7) get a list of urls
+(8) get corresponding metadata and rules
