@@ -4,19 +4,19 @@
 		"url": "www.google.com",
 		"frequency": "daily",
 		"getLinks": false,
-		"startDate": "10/29"
+		"startDate": "10/29/15"
 	},
 	{
 		"url": "www.yahoo.com",
 		"frequency": "weekly",
 		"getLinks": true,
-		"startDate": "10/30"
+		"startDate": "10/30/15"
 	},
 	{
 		"url": "www.bing.com",
 		"frequency": "yearly",
 		"getLinks": true,
-		"startDate": "10/31"
+		"startDate": "10/31/15"
 	}
 	]
 }
