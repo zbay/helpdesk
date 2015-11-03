@@ -15,7 +15,7 @@ PRIORITIES = ('closed', 'low', 'normal', 'high')
 with open('database/archiveRules.json') as rules_data:
     rules_data = json.load(rules_data)
     
-with open('database/archivePagess.json') as page_data:
+with open('database/archivePages.json') as page_data:
     page_data = json.load(page_data)
 
 
