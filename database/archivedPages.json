@@ -3,27 +3,32 @@
 	{
 		"url": "sils.unc.edu/courses",
 		"date": "10/10/15",
-		"tags": ["sils", "unc", "courses", "schedule"]
+		"tags": ["sils", "unc", "courses", "schedule"],
+		"description": "Classes offered at SILS"
 	},
 	{
 		"url": "sils.unc.edu/courses",
 		"date": "10/09/15",
-		"tags": ["sils", "unc", "courses", "schedule"]
+		"tags": ["sils", "unc", "courses", "schedule"],
+		"description": "Classes offered at SILS"
 	},
 	{
 		"url": "sils.unc.edu/courses",
 		"date": "10/08/15",
-		"tags": ["sils", "unc", "courses", "schedule"]
+		"tags": ["sils", "unc", "courses", "schedule"],
+		"description": "Classes offered at SILS"
 	},
 	{
 		"url": "sils.unc.edu/about",
 		"date": "10/09/15",
-		"tags": ["sils", "unc", "about"]
+		"tags": ["sils", "unc", "about"],
+		"description": "About SILS"
 	},
 	{
 		"url": "sils.unc.edu/program",
 		"date": "10/08/15",
-		"tags": ["sils", "unc", "program", "curriculum"]
+		"tags": ["sils", "unc", "program", "curriculum"],
+		"description": "About the SILS curricula"
 	}
 	]
 }
