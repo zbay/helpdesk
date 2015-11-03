@@ -12,8 +12,11 @@ PRIORITIES = ('closed', 'low', 'normal', 'high')
 
 # Load data from disk.
 # This simply loads the data from our "database," which is just a JSON file.
-with open('data.jsonld') as data:
-    data = json.load(data)
+with open('database/archiveRules.json') as rules_data:
+    rules_data = json.load(rules_data)
+    
+with open('database/archivePagess.json') as page_data:
+    page_data = json.load(page_data)
 
 
 # Generate a unique ID for a new help request.
