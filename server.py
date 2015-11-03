@@ -23,9 +23,9 @@ def generate_id(size=6, chars=string.ascii_lowercase + string.digits):
 
 
 # Respond with 404 Not Found if no help request with the specified ID exists.
-def error_if_helprequest_not_found(helprequest_id):
-    if helprequest_id not in data['helprequests']:
-        message = "No help request with ID: {}".format(helprequest_id)
+def error_if_rule_not_found(rule_id):
+    if rule_id not in data['archivedRules']:
+        message = "No rule with ID: {}".format(rule_id)
         abort(404, message=message)
 
 
