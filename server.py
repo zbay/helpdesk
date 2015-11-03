@@ -33,12 +33,12 @@ def error_if_rule_not_found(rule_id):
 
 
 # Filter and sort a list of helprequests.
-def filter_and_sort_helprequests(query='', sort_by='time'):
+def filter_and_sort_rules(query='', sort_by='time'):
 
     # Returns True if the query string appears in the help request's
     # title or description.
     def matches_query(item):
-        (helprequest_id, helprequest) = item
+        (rule_id, helprequest) = item
         text = helprequest['title'] + helprequest['description']
         return query.lower() in text
 
@@ -107,28 +107,28 @@ query_parser.add_argument(
 
 
 # Define our help request resource.
-class HelpRequest(Resource):
+class Rule(Resource):
 
     # If a help request with the specified ID does not exist,
     # respond with a 404, otherwise respond with an HTML representation.
-    def get(self, helprequest_id):
-        error_if_helprequest_not_found(helprequest_id)
+    def get(self, rule_id):
+        error_if_helprequest_not_found(rule_id)
         return make_response(
             render_helprequest_as_html(
-                data['helprequests'][helprequest_id]), 200)
+                data['archivingRules'][rule_id]), 200)
 
     # If a help request with the specified ID does not exist,
     # respond with a 404, otherwise update the help request and respond
     # with the updated HTML representation.
-    def patch(self, helprequest_id):
-        error_if_helprequest_not_found(helprequest_id)
-        helprequest = data['helprequests'][helprequest_id]
-        update = update_helprequest_parser.parse_args()
-        helprequest['priority'] = update['priority']
+    def patch(self, rule_id):
+        error_if_helprequest_not_found(rule_id)
+        rule = data['archivingRules'][rule_id]
+        update = update_rule_parser.parse_args()
+       # IMPLEMENT THE APP LOGIC rule['priority'] = update['priority']
         if len(update['comment'].strip()) > 0:
-            helprequest.setdefault('comments', []).append(update['comment'])
+           # IMPLEMENT THE APP LOGIC rule.setdefault('comments', []).append(update['comment'])
         return make_response(
-            render_helprequest_as_html(helprequest), 200)
+            render_rule_as_html(rule), 200)
 
 
 # Define a resource for getting a JSON representation of a help request.
