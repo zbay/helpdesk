@@ -35,14 +35,14 @@ def error_if_page_not_found(page_id):
         abort(404, message=message)
 
 
-# Filter and sort a list of helprequests.
+# Filter and sort a list of rules.
 def filter_and_sort_rules(query='', sort_by='time'):
 
     # Returns True if the query string appears in the help request's
     # title or description.
     def matches_query(item):
-        (rule_id, helprequest) = item
-        text = helprequest['title'] + helprequest['description']
+        (rule_id, rule) = item
+        text = rule['title'] + helprequest['description']
         return query.lower() in text
 
     # Returns the help request's value for the sort property (which by
