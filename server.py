@@ -55,11 +55,12 @@ def filter_and_sort_rules(query='', sort_by='time'):
 
 # Given the data for a help request, generate an HTML representation
 # of that help request.
-def render_helprequest_as_html(helprequest):
-    return render_template(
-        'helprequest+microdata+rdfa.html',
-        helprequest=helprequest,
-        priorities=reversed(list(enumerate(PRIORITIES))))
+def render_rule_as_html(rule):
+    return null # figure out the template logic
+   # return render_template(
+    #    'archivedRule.html',
+     #   rule=rule,
+      #  priorities=reversed(list(enumerate(PRIORITIES))))
 
 
 # Given the data for a list of help requests, generate an HTML representation
