@@ -6,15 +6,12 @@ import string
 import random
 from datetime import datetime
 
-# Define our priority levels.
-# These are the values that the "priority" property can take on a help request.
-PRIORITIES = ('closed', 'low', 'normal', 'high')
+#PRIORITIES = ('closed', 'low', 'normal', 'high')
 
 # Load data from disk.
-# This simply loads the data from our "database," which is just a JSON file.
+# This simply loads the data from our "database," which is just a pair of JSON files.
 with open('database/archiveRules.json') as rules_data:
     rules_data = json.load(rules_data)
-    
 with open('database/archivePages.json') as page_data:
     page_data = json.load(page_data)
 
@@ -25,9 +22,15 @@ def generate_id(size=6, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 
-# Respond with 404 Not Found if no help request with the specified ID exists.
+# Respond with 404 Not Found if no rule with the specified ID exists.
 def error_if_rule_not_found(rule_id):
-    if rule_id not in data['archivedRules']:
+    if rule_id not in rules_data['id']:
+        message = "No rule with ID: {}".format(rule_id)
+        abort(404, message=message)
+
+# Respond with 404 Not Found if no page with the specified ID exists.
+def error_if_page_not_found(page_id):
+    if pagee_id not in page_data['id']:
         message = "No rule with ID: {}".format(rule_id)
         abort(404, message=message)
 
