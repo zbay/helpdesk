@@ -12,7 +12,7 @@ PRIORITIES = ('closed', 'low', 'normal', 'high')
 
 # Load data from disk.
 # This simply loads the data from our "database," which is just a JSON file.
-with open('data.jsonld') as data:
+with open('database/archiveRules.json') as data:
     data = json.load(data)
 
 
