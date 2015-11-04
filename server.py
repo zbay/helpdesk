@@ -42,18 +42,18 @@ def filter_and_sort_rules(query='', sort_by='time'):
     # title or description.
     def matches_query(item):
         (rule_id, rule) = item
-        text = rule['title'] + helprequest['description']
+        text = rule['title'] + rule['description']
         return query.lower() in text
 
     # Returns the help request's value for the sort property (which by
     # default is the "time" property).
     def get_sort_value(item):
-        (helprequest_id, helprequest) = item
-        return helprequest[sort_by]
+        (rule_id, rule) = item
+        return rule[sort_by]
 
-    filtered_helprequests = filter(matches_query, data['helprequests'].items())
+    filtered_rules = filter(matches_query, data['arhivingRules'].items())
 
-    return sorted(filtered_helprequests, key=get_sort_value, reverse=True)
+    return sorted(filtered_rules, key=get_sort_value, reverse=True)
 
 
 # Given the data for a help request, generate an HTML representation
@@ -68,10 +68,10 @@ def render_rule_as_html(rule):
 
 # Given the data for a list of help requests, generate an HTML representation
 # of that list.
-def render_helprequest_list_as_html(helprequests):
+def render_rule_list_as_html(rules):
     return render_template(
-        'helprequests+microdata+rdfa.html',
-        helprequests=helprequests,
+        'rules+microdata+rdfa.html', #make this file
+        rules=rules,
         priorities=PRIORITIES)
 
 
@@ -85,25 +85,25 @@ def nonempty_string(x):
 
 # Specify the data necessary to create a new help request.
 # "from", "title", and "description" are all required values.
-new_helprequest_parser = reqparse.RequestParser()
-for arg in ['from', 'title', 'description']:
-    new_helprequest_parser.add_argument(
+new_rule_parser = reqparse.RuleParser()
+for arg in ['from', 'title', 'description']: #fix the stuff in this for loop
+    new_rule_parser.add_argument(
         arg, type=nonempty_string, required=True,
         help="'{}' is a required value".format(arg))
 
 
 # Specify the data necessary to update an existing help request.
 # Only the priority and comments can be updated.
-update_helprequest_parser = reqparse.RequestParser()
-update_helprequest_parser.add_argument(
+update_rule_parser = reqparse.RuleParser()
+update_rule_parser.add_argument(
     'priority', type=int, default=PRIORITIES.index('normal'))
-update_helprequest_parser.add_argument(
+update_rule_parser.add_argument(
     'comment', type=str, default='')
 
 
 # Specify the parameters for filtering and sorting help requests.
 # See `filter_and_sort_helprequests` above.
-query_parser = reqparse.RequestParser()
+query_parser = reqparse.RuleParser()
 query_parser.add_argument(
     'query', type=str, default='')
 query_parser.add_argument(
@@ -116,16 +116,16 @@ class Rule(Resource):
     # If a help request with the specified ID does not exist,
     # respond with a 404, otherwise respond with an HTML representation.
     def get(self, rule_id):
-        error_if_helprequest_not_found(rule_id)
+        error_if_rule_not_found(rule_id)
         return make_response(
-            render_helprequest_as_html(
+            render_rule_as_html(
                 data['archivingRules'][rule_id]), 200)
 
     # If a help request with the specified ID does not exist,
     # respond with a 404, otherwise update the help request and respond
     # with the updated HTML representation.
     def patch(self, rule_id):
-        error_if_helprequest_not_found(rule_id)
+        error_if_rule_not_found(rule_id)
         rule = data['archivingRules'][rule_id]
         update = update_rule_parser.parse_args()
        # IMPLEMENT THE APP LOGIC rule['priority'] = update['priority']
@@ -136,42 +136,41 @@ class Rule(Resource):
 
 
 # Define a resource for getting a JSON representation of a help request.
-class HelpRequestAsJSON(Resource):
+class RuleAsJSON(Resource):
 
     # If a help request with the specified ID does not exist,
     # respond with a 404, otherwise respond with a JSON representation.
-    def get(self, helprequest_id):
-        error_if_helprequest_not_found(helprequest_id)
-        helprequest = data['helprequests'][helprequest_id]
-        helprequest['@context'] = data['@context']
-        return helprequest
+    def get(self, rule_id):
+        error_if_rule_not_found(rule_id)
+        rule = data['archivingRules'][rule_id]
+        #helprequest['@context'] = data['@context']
+        return rule
 
 
 # Define our help request list resource.
-class HelpRequestList(Resource):
+class RuleList(Resource):
 
     # Respond with an HTML representation of the help request list, after
     # applying any filtering and sorting parameters.
     def get(self):
         query = query_parser.parse_args()
         return make_response(
-            render_helprequest_list_as_html(
-                filter_and_sort_helprequests(**query)), 200)
+            render_rule_list_as_html(
+                filter_and_sort_rules(**query)), 200)
 
     # Add a new help request to the list, and respond with an HTML
     # representation of the updated list.
     def post(self):
-        helprequest = new_helprequest_parser.parse_args()
-        helprequest['time'] = datetime.isoformat(datetime.now())
-        helprequest['priority'] = PRIORITIES.index('normal')
-        data['helprequests'][generate_id()] = helprequest
+        rule = new_rule_parser.parse_args()
+        rule['startDate'] = datetime.isoformat(datetime.now())
+        data['archivingRules'][generate_id()] = rule
         return make_response(
-            render_helprequest_list_as_html(
-                filter_and_sort_helprequests()), 201)
+            render_rule_list_as_html(
+                filter_and_sort_rules()), 201)
 
 
-# Define a resource for getting a JSON representation of the help request list.
-class HelpRequestListAsJSON(Resource):
+# Define a resource for getting a JSON representation of the rule list.
+class RuleListAsJSON(Resource):
     def get(self):
         return data
 
@@ -179,16 +178,16 @@ class HelpRequestListAsJSON(Resource):
 # Assign URL paths to our resources.
 app = Flask(__name__)
 api = Api(app)
-api.add_resource(HelpRequestList, '/requests')
-api.add_resource(HelpRequestListAsJSON, '/requests.json')
-api.add_resource(HelpRequest, '/request/<string:helprequest_id>')
-api.add_resource(HelpRequestAsJSON, '/request/<string:helprequest_id>.json')
+api.add_resource(RuleList, '/rules')
+api.add_resource(RuleListAsJSON, 'database/archiveRules.json')
+api.add_resource(Rule, '/request/<string:rule_id>')
+api.add_resource(RuleAsJSON, '/request/<string:rule_id>.json')
 
 
-# Redirect from the index to the list of help requests.
+# Redirect from the index to the list of rules.
 @app.route('/')
 def index():
-    return redirect(api.url_for(HelpRequestList), code=303)
+    return redirect(api.url_for(RuleList), code=303)
 
 
 # Start the server.
