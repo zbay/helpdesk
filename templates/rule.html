@@ -1,6 +1,59 @@
-<html>
+<!doctype html>
+<link rel="alternate" type="application/json" href="{{ rule.path }}.json">
+<title>Rule: {{ rule.id }}</title>
    <body>
-   <h1>Your Current Archiving Rules</h1>
+  <title>Edit/Delete Rule: {{ rule.id }}</title>
+  
+  
+  <time itemprop="dateCreated" property="dateCreated"
+      datetime="{{ rule.time }}">{{ rule.time }}</time>
+  <!-- Begin form copied from help request template -->
+      <form class="help-request-editor" method="patch">
+  <label>priority
+  <select name="priority">
+    {% for value, label in priorities %}
+    <option value="{{ value }}" {% if helprequest.priority == value %}selected{% endif %}>
+      {{ label }}
+    </option>
+    {% endfor %}
+    </select>
+  </label>
+  <br>
+
+  <label>comments<br>
+    <ul>
+      {% for comment in helprequest.comments %}
+      <li itemprop="comment" itemscope itemtype="http://schema.org/Comment"
+          property="comment" typeof="Comment">
+        <p itemprop="text" property="text">{{ comment }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    <textarea name="comment"></textarea>
+  </label>
+  <br>
+  <input class="update" type="submit" value="update help request">
+  <script>
+    var form = document.querySelector('form.help-request-editor');
+    var button = document.querySelector('form.help-request-editor input.update');
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open('PATCH', window.location.pathname);
+      request.onreadystatechange = function () {
+        if (XMLHttpRequest.DONE === request.readyState 
+            && 200 === request.status) {
+          window.location.reload(true);
+        }
+      }
+      request.send(new FormData(form));
+    }, false);
+  </script>
+</form>
+  <!-- End form copied from help request template -->
+
+    <!-- Begin code from original template -->
+
 		<h2>Edit/Delete Rules</h2>	
 		<link src="resource_data.html" rel="data-editable data-deletable"/>
 		<table style="border: 2px solid black; text-align:center;" class="rules_table"> <!-- This table would use a database connection to load all of the user's archiving rules -->
