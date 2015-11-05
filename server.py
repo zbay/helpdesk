@@ -6,7 +6,7 @@ import string
 import random
 from datetime import datetime
 
-#PRIORITIES = ('closed', 'low', 'normal', 'high')
+FREQUENCIES = ('daily', 'weekly', 'monthly')
 
 # Load data from disk.
 # This simply loads the data from our "database," which is just a pair of JSON files.
@@ -56,23 +56,23 @@ def filter_and_sort_rules(query='', sort_by='time'):
     return sorted(filtered_rules, key=get_sort_value, reverse=True)
 
 
-# Given the data for a help request, generate an HTML representation
+# Given the data for a rule, generate an HTML representation
 # of that help request.
 def render_rule_as_html(rule):
     return null # figure out the template logic
-   # return render_template(
-    #    'archivedRule.html',
-     #   rule=rule,
-      #  priorities=reversed(list(enumerate(PRIORITIES))))
+    return render_template(
+        'rule.html',
+         rule=rule,
+         frequencies=reversed(list(enumerate(FREQUENCIES))))
 
 
-# Given the data for a list of help requests, generate an HTML representation
+# Given the data for a list of rules, generate an HTML representation
 # of that list.
 def render_rule_list_as_html(rules):
     return render_template(
         'rules+microdata+rdfa.html', #make this file
         rules=rules,
-        priorities=PRIORITIES)
+        frequencies=FREQUENCIES)
 
 
 # Raises an error if the string x is empty (has zero length).
@@ -92,11 +92,11 @@ for arg in ['from', 'title', 'description']: #fix the stuff in this for loop
         help="'{}' is a required value".format(arg))
 
 
-# Specify the data necessary to update an existing help request.
-# Only the priority and comments can be updated.
+# Specify the data necessary to update an existing rule.
+# Only the frequency and comments can be updated.
 update_rule_parser = reqparse.RuleParser()
 update_rule_parser.add_argument(
-    'priority', type=int, default=PRIORITIES.index('normal'))
+    'frequency', type=int, default=FREQUENCIES.index('normal'))
 update_rule_parser.add_argument(
     'comment', type=str, default='')
 
@@ -107,7 +107,7 @@ query_parser = reqparse.RuleParser()
 query_parser.add_argument(
     'query', type=str, default='')
 query_parser.add_argument(
-    'sort_by', type=str, choices=('priority', 'time'), default='time')
+    'sort_by', type=str, choices=('frequency', 'time'), default='time')
 
 
 # Define our help request resource.
@@ -128,9 +128,9 @@ class Rule(Resource):
         error_if_rule_not_found(rule_id)
         rule = data['archivingRules'][rule_id]
         update = update_rule_parser.parse_args()
-       # IMPLEMENT THE APP LOGIC rule['priority'] = update['priority']
+        rule['frequency'] = update['frequency']
         if len(update['comment'].strip()) > 0:
-           # IMPLEMENT THE APP LOGIC rule.setdefault('comments', []).append(update['comment'])
+           rule.setdefault('comments', []).append(update['comment'])
         return make_response(
             render_rule_as_html(rule), 200)
 
@@ -147,10 +147,10 @@ class RuleAsJSON(Resource):
         return rule
 
 
-# Define our help request list resource.
+# Define our rule list resource.
 class RuleList(Resource):
 
-    # Respond with an HTML representation of the help request list, after
+    # Respond with an HTML representation of the rule list, after
     # applying any filtering and sorting parameters.
     def get(self):
         query = query_parser.parse_args()
@@ -158,7 +158,7 @@ class RuleList(Resource):
             render_rule_list_as_html(
                 filter_and_sort_rules(**query)), 200)
 
-    # Add a new help request to the list, and respond with an HTML
+    # Add a new rule to the list, and respond with an HTML
     # representation of the updated list.
     def post(self):
         rule = new_rule_parser.parse_args()
