@@ -8,11 +8,11 @@
   <time itemprop="dateCreated" property="dateCreated"
       datetime="{{ rule.time }}">{{ rule.time }}</time>
   <!-- Begin form copied from help request template -->
-      <form class="help-request-editor" method="patch">
-  <label>priority
-  <select name="priority">
-    {% for value, label in priorities %}
-    <option value="{{ value }}" {% if helprequest.priority == value %}selected{% endif %}>
+      <form class="rule-editor" method="patch">
+  <label>Frequency
+  <select name="frequency">
+    {% for value, label in frequencies %}
+    <option value="{{ value }}" {% if rule.frequency == value %}selected{% endif %}>
       {{ label }}
     </option>
     {% endfor %}
