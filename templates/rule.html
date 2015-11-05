@@ -1,9 +1,8 @@
 <!doctype html>
 <link rel="alternate" type="application/json" href="{{ rule.path }}.json">
-<title>Rule: {{ rule.id }}</title>
+<title>Rules: {{ rule.id }}</title>
    <body>
   <title>Edit/Delete Rule: {{ rule.id }}</title>
-  
   
   <time itemprop="dateCreated" property="dateCreated"
       datetime="{{ rule.time }}">{{ rule.time }}</time>
@@ -20,22 +19,21 @@
   </label>
   <br>
 
-  <label>comments<br>
+  <label>URL<br>
     <ul>
-      {% for comment in helprequest.comments %}
-      <li itemprop="comment" itemscope itemtype="http://schema.org/Comment"
-          property="comment" typeof="Comment">
-        <p itemprop="text" property="text">{{ comment }}</p>
+      {% for address in helprequest.url %}
+      <li>
+        <p itemprop="text" property="text">{{ address }}</p>
       </li>
       {% endfor %}
     </ul>
-    <textarea name="comment"></textarea>
+    <input name="url"></input>
   </label>
   <br>
   <input class="update" type="submit" value="update help request">
   <script>
-    var form = document.querySelector('form.help-request-editor');
-    var button = document.querySelector('form.help-request-editor input.update');
+    var form = document.querySelector('form.rule-editor');
+    var button = document.querySelector('form.rule-editor input.update');
     button.addEventListener('click', function (event) {
       event.preventDefault();
       var request = new XMLHttpRequest();
