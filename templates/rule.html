@@ -21,11 +21,9 @@
 
   <label>URL<br>
     <ul>
-      {% for address in helprequest.url %}
       <li>
-        <p itemprop="text" property="text">{{ address }}</p>
+        <p itemprop="text" property="text">{{ rule.url }}</p>
       </li>
-      {% endfor %}
     </ul>
     <input name="url"></input>
   </label>
