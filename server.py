@@ -180,8 +180,8 @@ app = Flask(__name__)
 api = Api(app)
 api.add_resource(RuleList, '/rules')
 api.add_resource(RuleListAsJSON, 'database/archiveRules.json')
-api.add_resource(Rule, '/request/<string:rule_id>')
-api.add_resource(RuleAsJSON, '/request/<string:rule_id>.json')
+api.add_resource(Rule, '/rule/<string:rule_id>')
+api.add_resource(RuleAsJSON, '/rule/<string:rule_id>.json')
 
 
 # Redirect from the index to the list of rules.
