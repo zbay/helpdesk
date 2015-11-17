@@ -42,7 +42,7 @@ def filter_and_sort_rules(query='', sort_by='time'):
     # title or description.
     def matches_query(item):
         (rule_id, rule) = item
-        text = rule['title'] + rule['description']
+        text = rule['url'] + rule['description']
         return query.lower() in text
 
     # Returns the help request's value for the sort property (which by
@@ -51,7 +51,7 @@ def filter_and_sort_rules(query='', sort_by='time'):
         (rule_id, rule) = item
         return rule[sort_by]
 
-    filtered_rules = filter(matches_query, data['archivingRules'].items())
+    filtered_rules = filter(matches_query, rules_data['archivingRules'].items())
 
     return sorted(filtered_rules, key=get_sort_value, reverse=True)
 
@@ -119,14 +119,14 @@ class Rule(Resource):
         error_if_rule_not_found(rule_id)
         return make_response(
             render_rule_as_html(
-                data['archivingRules'][rule_id]), 200)
+                rules_data['archivingRules'][rule_id]), 200)
 
     # If a help request with the specified ID does not exist,
     # respond with a 404, otherwise update the help request and respond
     # with the updated HTML representation.
     def patch(self, rule_id):
         error_if_rule_not_found(rule_id)
-        rule = data['archivingRules'][rule_id]
+        rule = rules_data['archivingRules'][rule_id]
         update = update_rule_parser.parse_args()
         rule['frequency'] = update['frequency']
         if len(update['comment'].strip()) > 0:
@@ -142,8 +142,8 @@ class RuleAsJSON(Resource):
     # respond with a 404, otherwise respond with a JSON representation.
     def get(self, rule_id):
         error_if_rule_not_found(rule_id)
-        rule = data['archivingRules'][rule_id]
-        #helprequest['@context'] = data['@context']
+        rule = rules_data['archivingRules'][rule_id]
+        #helprequest['@context'] = rules_data['@context']
         return rule
 
 
@@ -163,7 +163,7 @@ class RuleList(Resource):
     def post(self):
         rule = new_rule_parser.parse_args()
         rule['startDate'] = datetime.isoformat(datetime.now())
-        data['archivingRules'][generate_id()] = rule
+        rules_data['archivingRules'][generate_id()] = rule
         return make_response(
             render_rule_list_as_html(
                 filter_and_sort_rules()), 201)
@@ -172,7 +172,7 @@ class RuleList(Resource):
 # Define a resource for getting a JSON representation of the rule list.
 class RuleListAsJSON(Resource):
     def get(self):
-        return data
+        return rules_data
 
 
 # Assign URL paths to our resources.
