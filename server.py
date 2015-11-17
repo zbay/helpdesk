@@ -30,7 +30,7 @@ def error_if_rule_not_found(rule_id):
 
 # Respond with 404 Not Found if no page with the specified ID exists.
 def error_if_page_not_found(page_id):
-    if pagee_id not in page_data['id']:
+    if page_id not in page_data['id']:
         message = "No rule with ID: {}".format(rule_id)
         abort(404, message=message)
 
