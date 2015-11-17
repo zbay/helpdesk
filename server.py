@@ -12,7 +12,7 @@ FREQUENCIES = ('daily', 'weekly', 'monthly')
 # This simply loads the data from our "database," which is just a pair of JSON files.
 with open('database/archiveRules.json') as rules_data:
     rules_data = json.load(rules_data)
-with open('database/archivePages.json') as page_data:
+with open('database/archivedPages.json') as page_data:
     page_data = json.load(page_data)
 
 
@@ -51,7 +51,7 @@ def filter_and_sort_rules(query='', sort_by='time'):
         (rule_id, rule) = item
         return rule[sort_by]
 
-    filtered_rules = filter(matches_query, data['arhivingRules'].items())
+    filtered_rules = filter(matches_query, data['archivingRules'].items())
 
     return sorted(filtered_rules, key=get_sort_value, reverse=True)
 
@@ -85,8 +85,8 @@ def nonempty_string(x):
 
 # Specify the data necessary to create a new help request.
 # "from", "title", and "description" are all required values.
-new_rule_parser = reqparse.RuleParser()
-for arg in ['from', 'title', 'description']: #fix the stuff in this for loop
+new_rule_parser = reqparse.RequestParser()
+for arg in ['url', 'frequency', 'description']: #fix the stuff in this for loop
     new_rule_parser.add_argument(
         arg, type=nonempty_string, required=True,
         help="'{}' is a required value".format(arg))
@@ -94,16 +94,16 @@ for arg in ['from', 'title', 'description']: #fix the stuff in this for loop
 
 # Specify the data necessary to update an existing rule.
 # Only the frequency and comments can be updated.
-update_rule_parser = reqparse.RuleParser()
+update_rule_parser = reqparse.RequestParser()
 update_rule_parser.add_argument(
-    'frequency', type=int, default=FREQUENCIES.index('normal'))
+    'frequency', type=int, default=FREQUENCIES.index('daily'))
 update_rule_parser.add_argument(
-    'comment', type=str, default='')
+    'description', type=str, default='')
 
 
 # Specify the parameters for filtering and sorting help requests.
 # See `filter_and_sort_helprequests` above.
-query_parser = reqparse.RuleParser()
+query_parser = reqparse.RequestParser()
 query_parser.add_argument(
     'query', type=str, default='')
 query_parser.add_argument(
@@ -179,7 +179,7 @@ class RuleListAsJSON(Resource):
 app = Flask(__name__)
 api = Api(app)
 api.add_resource(RuleList, '/rules')
-api.add_resource(RuleListAsJSON, 'database/archiveRules.json')
+api.add_resource(RuleListAsJSON, '/database/archiveRules.json')
 api.add_resource(Rule, '/rule/<string:rule_id>')
 api.add_resource(RuleAsJSON, '/rule/<string:rule_id>.json')
 
