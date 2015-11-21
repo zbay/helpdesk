@@ -1,0 +1,14 @@
+<!doctype html>
+<link rel="alternate" type="application/json" href="archivedPages.json">
+<title>Archived Pages</title>
+<div>
+<h1>Archived Pages</h1>
+<ul>
+{% for page in pages %}
+    <li>
+        <a href="{{ 'page/' + page[0] }}">{{ page[1]['url'] }}</a>: {{ page[1]['date'] }}
+    </li>
+{% endfor %}
+</ul>
+</body>
+</html>
