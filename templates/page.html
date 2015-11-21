@@ -1,0 +1,19 @@
+<!doctype html>
+<link rel="alternate" type="application/json" href="archiveRules.json">
+<title>Archiving Rule</title>
+<body>
+<h1>Page ID: {{ page['@id'][5:] }}</h1>
+<h1>Edit page description and tags:</h1>
+<form class="metadata-changer" method="PATCH">
+            URL: <a href="{{ page['url'] }}">{{ page['url'] }}</a><br />
+            Date: {{ page['date'] }}<br />
+            Associated rule: <a href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a><br />
+			<label>Tags (separate with commas): <input name="description" value="
+			                {% for counter in range (0, (page['tags']|length)) %}
+                    {{page['tags'][counter].strip()}},{% endfor %}">
+            </input></label><br />
+			<label>Description:<textarea name="description">{{ page['description'] }}</textarea></label>
+			<div><input type="submit" value="Save changes" id="rule-confirm"/></div>
+        </form>
+</body>
+</html>
