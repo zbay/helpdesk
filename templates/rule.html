@@ -1,109 +1,20 @@
 <!doctype html>
-<link rel="alternate" type="application/json" href="{{ rule.path }}.json">
-<title>Rules: {{ rule.id }}</title>
-   <body>
-  <title>Edit/Delete Rule: {{ rule.id }}</title>
-  
-  <time itemprop="dateCreated" property="dateCreated"
-      datetime="{{ rule.time }}">{{ rule.time }}</time>
-  <!-- Begin form copied from help request template -->
-      <form class="rule-editor" method="patch">
-  <label>Frequency
-  <select name="frequency">
-    {% for value, label in frequencies %}
-    <option value="{{ value }}" {% if rule.frequency == value %}selected{% endif %}>
-      {{ label }}
-    </option>
-    {% endfor %}
-    </select>
-  </label>
-  <br>
-
-  <label>URL<br>
-    <ul>
-      <li>
-        <p itemprop="text" property="text">{{ rule.url }}</p>
-      </li>
-    </ul>
-    <input name="url"></input>
-  </label>
-  <br>
-  <input class="update" type="submit" value="update help request">
-  <script>
-    var form = document.querySelector('form.rule-editor');
-    var button = document.querySelector('form.rule-editor input.update');
-    button.addEventListener('click', function (event) {
-      event.preventDefault();
-      var request = new XMLHttpRequest();
-      request.open('PATCH', window.location.pathname);
-      request.onreadystatechange = function () {
-        if (XMLHttpRequest.DONE === request.readyState 
-            && 200 === request.status) {
-          window.location.reload(true);
-        }
-      }
-      request.send(new FormData(form));
-    }, false);
-  </script>
-</form>
-<a rel="collection" href="{{ url_for('rulelist') }}">all rules</a>
-  <!-- End form copied from help request template -->
-
-    <!-- Begin code from original template -->
-
-		<h2>Edit/Delete Rules</h2>	
-		<link src="resource_data.html" rel="data-editable data-deletable"/>
-		<table style="border: 2px solid black; text-align:center;" class="rules_table"> <!-- This table would use a database connection to load all of the user's archiving rules -->
-		<th>URL</th><th>Frequency</th><th>Archive links?</th><th>Save changes</th><th>Delete rule</th>
-		<tr>
-		<form action="resource_data.html" method="PATCH" class="rule_form">
-			<td><input type="text" name="url_to_archive" value="www.google.com"></input></td>
-			<td><select class="frequency">
-				<option value="hourly">Hourly</option>
-				<option value="daily" selected>Daily</option>
-				<option value="weekly">Weekly</option>
-				<option value="monthly">Monthly</option>
-			</select></td>
-			<td><input type="radio" name="links" value="Yes">Get links</input> <input type="radio" name="links" value="No" checked>Don't get links</input></td>
-			<td><input type="submit" value="Submit"/></td>
-			<td><input type="submit" value="Delete"/></td>
-		</form>
-		</tr>
-		<tr>
-		<form action="resource_data.html" method="PATCH" class="rule_form">
-			<td><input type="text" name="url_to_archive" value="www.yahoo.com"></input></td>
-			<td><select>
-				<option value="hourly">Hourly</option>
-				<option value="daily">Daily</option>
-				<option value="weekly" selected>Weekly</option>
-				<option value="monthly">Monthly</option>
-			</select></td>
-			<td><input type="radio" name="links" value="Yes" checked>Get links</input> <input type="radio" name="links" value="No">Don't get links</input></td>
-			<td><input type="submit" value="Submit"/></td>
-			<td><input type="submit" value="Delete"/></td>
-		</form>
-		</tr>
-		<tr>
-		<form action="resource_data.html" method="PATCH" class="rule-form">
-			<td><input type="text" name="url_to_archive" value="www.bing.com"></input></td>
-			<td><select>
-				<option value="hourly">Hourly</option>
-				<option value="daily">Daily</option>
-				<option value="weekly">Weekly</option>
-				<option value="monthly" selected>Monthly</option>
-			</select></td>
-			<td><input type="radio" name="links" value="Yes" checked>Get links</input> <input type="radio" name="links" value="No">Don't get links</input></td>
-			<td><input type="submit" value="Submit"/></td>
-			<td><input type="submit" value="Delete"/></td>
-		</form>
-		</tr>
-		</table>
-		<br />
-		<a href="hub.html">Return to the home page</a>
-		<style>
-		th, td{
-			border:1px solid black;
-		}
-		</style>
-   </body>
+<link rel="alternate" type="application/json" href="archiveRules.json">
+<title>Archiving Rule</title>
+<body>
+<h1>Rule ID: {{ rule['@id'][5:] }}</h1>
+<h1>Edit rule:</h1>
+<form class="rule-maker" method="PATCH">
+            URL: <a href="{{ rule['url'] }}">{{ rule['url'] }}</a><br />
+			<label>Frequency: <select name="frequency">
+				<option value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
+				<option value="daily" {% if rule['frequency'] == 'daily' %} selected {% endif %}>Daily</option>
+				<option value="weekly" {% if rule['frequency'] == 'weekly' %} selected {% endif %}>Weekly</option>
+				<option value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
+			</select></label><br />
+			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true" {% if rule['getLinks'] == 'true' %} checked {% endif %}>Yes</input> <input type="radio" name="links" value="false" {% if rule['getLinks'] == 'true' %} checked {% endif %}>No</input></label><br />
+			<label>Description:<textarea name="description">{{ rule['description'] }}</textarea></label>
+			<div><input type="submit" value="Modify rule" id="rule-confirm"/></div>
+        </form>
+</body>
 </html>
