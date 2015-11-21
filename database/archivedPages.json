@@ -1,39 +1,45 @@
 {
-	"archivedPages": [
-	{
-		"id": "3i1fji",
-		"url": "sils.unc.edu/courses",
-		"date": "10/10/15",
-		"tags": ["sils", "unc", "courses", "schedule"],
-		"description": "Classes offered at SILS"
-	},
-	{
-		"id": "j5ir8t",
-		"url": "sils.unc.edu/courses",
-		"date": "10/09/15",
-		"tags": ["sils", "unc", "courses", "schedule"],
-		"description": "Classes offered at SILS"
-	},
-	{
-		"id": "j6qwef",
-		"url": "sils.unc.edu/courses",
-		"date": "10/08/15",
-		"tags": ["sils", "unc", "courses", "schedule"],
-		"description": "Classes offered at SILS"
-	},
-	{
-		"id": "pwd5j9",
-		"url": "sils.unc.edu/about",
-		"date": "10/09/15",
-		"tags": ["sils", "unc", "about"],
-		"description": "About SILS"
-	},
-	{
-		"id": "1ji78o",
-		"url": "sils.unc.edu/program",
-		"date": "10/08/15",
-		"tags": ["sils", "unc", "program", "curriculum"],
-		"description": "About the SILS curricula"
-	}
-	]
+	"archivedPages": {
+
+ "3i1fji": {
+	 "@id": "page/3i1fji",
+	"url": "http://www.google.com",
+	"date": "2015-10-13T12:50:4",
+	"tags": ["google", "search", "homepage", "alphabet"],
+	"description": "Google's homepage on 10/13/2015 with a spooky Friday the 13th doodle",
+	 "ruleID":"i32cde"
+},
+"j5ir8t": {
+	"@id": "page/j5ir8t",
+"url": "http://www.yahoo.com",
+"date": "2015-10-18T10:00:4",
+"tags": ["yahoo", "search", "homepage"],
+"description": "Yahoo's homepage on 10/18/15",
+	"ruleID":"m4kla9"
+},
+"j6qwef": {
+	"@id": "page/j6qwef",
+"url": "http://www.bing.com",
+"date": "2014-10-18T10:00:4",
+"tags": ["bing", "microsoft", "search", "homepage"],
+"description": "Bing's homepage on 10/18/2014",
+	"ruleID": "4ijrw0"
+},
+"pwd5j9": {
+	"@id": "page/pwd5j9",
+"url": "http://www.google.com",
+"date": "2014-10-11T10:00:4",
+"tags": ["google", "search", "homepage", "alphabet"],
+"description": "Google's homepage on 10/11/2014 with that confusing doodle",
+	 "ruleID":"i32cde"
+},
+"1ji78o": {
+	"@id": "page/1ji78o",
+"url": "http://www.yahoo.com",
+"date": "2015-11-18T10:00:4",
+"tags": ["yahoo", "search", "homepage"],
+"description": "Yahoo's homepage on 11/18/2015",
+	"ruleID":"m4kla9"
+}
+}
 }
