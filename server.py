@@ -126,10 +126,10 @@ update_rule_parser.add_argument(
 update_rule_parser.add_argument(
     'description', type=str, default='')
 update_rule_parser.add_argument(
-    'getLinks', type=bool, default='false')
+    'getLinks', type=str, default='false')
 
 update_page_parser = reqparse.RequestParser()
-update_page_parser.add_argument('tags', type=list, default=[])
+update_page_parser.add_argument('tags', type=str, default="")
 update_page_parser.add_argument(
     'description', type=str, default='')
 
@@ -167,8 +167,7 @@ class Rule(Resource):
         rule = rules_data['archivingRules'][rule_id]
         update = update_rule_parser.parse_args()
         rule['frequency'] = update['frequency']
-        if len(update['description'].strip()) > 0:
-            rule.setdefault('description', []).append(update['description'])
+        rule['description'] = update['description']
         rule['getLinks'] = update['getLinks']
         return make_response(
             render_rule_as_html(rule), 200)
@@ -179,6 +178,7 @@ class Page(Resource):
     # respond with a 404, otherwise respond with an HTML representation.
     def get(self, page_id):
         error_if_page_not_found(page_id)
+        print page_data['archivedPages'][page_id]['tags'][0]
         return make_response(
             render_page_as_html(
                 page_data['archivedPages'][page_id]), 200)
@@ -190,10 +190,11 @@ class Page(Resource):
         error_if_page_not_found(page_id)
         page = page_data['archivedPages'][page_id]
         update = update_page_parser.parse_args()
-        page['tags'] = update['tags']
+        if len(update['tags'].strip()) > 0:
+            update['tags'] = update['tags'].split(";")
+            for tag in update['tags']:
+                page.setdefault('tags', []).append(tag)
         page['description'] = update['description']
-        if len(update['description'].strip()) > 0:
-            page.setdefault('description', []).append(update['description'])
         return make_response(
             render_page_as_html(page), 200)
 
@@ -208,6 +209,16 @@ class RuleAsJSON(Resource):
         rule = rules_data['archivingRules'][rule_id]
         #rule['@context'] = rules_data['@context']
         return rule
+
+class PageAsJSON(Resource):
+
+    # If a help request with the specified ID does not exist,
+    # respond with a 404, otherwise respond with a JSON representation.
+    def get(self, page_id):
+        error_if_page_not_found(page_id)
+        page = page_data['archivedPages'][page_id]
+        #page['@context'] = page_data['@context']
+        return page
 
 
 # Define our help request list resource.
@@ -245,6 +256,10 @@ class RuleListAsJSON(Resource):
     def get(self):
         return rules_data
 
+class PageListAsJSON(Resource):
+    def get(self):
+        return page_data
+
 
 # Assign URL paths to our resources.
 app = Flask(__name__)
@@ -254,7 +269,9 @@ api.add_resource(RuleListAsJSON, '/rules.json')
 api.add_resource(Rule, '/rule/<string:rule_id>')
 api.add_resource(RuleAsJSON, '/rule/<string:rule_id>.json')
 api.add_resource(PageList, '/pages')
+api.add_resource(PageListAsJSON, '/pages.json')
 api.add_resource(Page, '/page/<string:page_id>')
+api.add_resource(PageAsJSON, '/page/<string:page_id>.json')
 
 # Redirect from the index to the list of help requests.
 @app.route('/')
