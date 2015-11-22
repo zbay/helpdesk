@@ -3,8 +3,9 @@
 <title>Archiving Rule</title>
 <body>
 <h1>Rule ID: {{ rule['@id'][5:] }}</h1>
+<div style="background-color:lightgray; padding:5px;">
 <h1>Edit rule:</h1>
-<form class="rule-maker" method="PATCH">
+<form class="rule-editor" method="patch">
             URL: <a href="{{ rule['url'] }}">{{ rule['url'] }}</a><br />
 			<label>Frequency: <select name="frequency">
 				<option value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
@@ -12,9 +13,27 @@
 				<option value="weekly" {% if rule['frequency'] == 'weekly' %} selected {% endif %}>Weekly</option>
 				<option value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
 			</select></label><br />
-			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true" {% if rule['getLinks'] == 'true' %} checked {% endif %}>Yes</input> <input type="radio" name="links" value="false" {% if rule['getLinks'] == 'true' %} checked {% endif %}>No</input></label><br />
+			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true" {% if rule['getLinks'] == 'true' %} checked {% endif %}>Yes</input> <input type="radio" name="getLinks" value="false" {% if rule['getLinks'] == 'false' %} checked {% endif %}>No</input></label><br />
 			<label>Description:<textarea name="description">{{ rule['description'] }}</textarea></label>
-			<div><input type="submit" value="Modify rule" id="rule-confirm"/></div>
+			<div><input class="update" type="submit" value="Modify rule" id="rule-confirm"/></div>
+	 <script>
+    var form = document.querySelector('form.rule-editor');
+    var button = document.querySelector('form.rule-editor input.update');
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open('PATCH', window.location.pathname);
+      request.onreadystatechange = function () {
+        if (XMLHttpRequest.DONE === request.readyState
+            && 200 === request.status) {
+          window.location.reload(true);
+        }
+      }
+      request.send(new FormData(form));
+    }, false);
+  </script>
         </form>
+	</div>
+<a href="../rules">View all rules.</a>
 </body>
 </html>
