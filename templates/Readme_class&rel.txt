@@ -27,3 +27,17 @@ class attributes:
 rel attributes:
 (1) alternate: alternate resource 
 (2) collection: link to a collection of pages
+
+3. rule-list.html
+class attributes:
+(1) title: Describes title of the page
+(2) rule_collection: Describes the container of rule list
+(3) rule: Indicates each rule in rule list
+(4) date: Describes the date of archiving rule
+(5) func_des: Describes the function of contents below
+(6) rule-maker: Indicates the form to create a new resource(rule)
+(7) create: Describes the action to create a new rule
+
+rel attributes:
+(1) alternate: alternate resource 
+(2) page_collection: link to a collection of archived pages
