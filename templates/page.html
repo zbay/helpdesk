@@ -7,17 +7,17 @@
     }
 </style>
 <body>
-<h1>Page ID: {{ page['@id'][5:] }}</h1>
+<h1 class="page_id">Page ID: {{ page['@id'][5:] }}</h1>
 <div style="background-color:lightgray; padding:5px;">
-<h2>Edit page description and tags:</h2>
+<h2 class="func_des">Edit page description and tags:</h2>
 <form class="metadata-changer" method="patch">
-            <label>URL: <a href="{{ page['url'] }}">{{ page['url'] }}</a></label><br />
-            <label>Date: {{ page['date'] }}</label><br />
-            <label>Associated rule: <a href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a></label><br />
-			<label>Current tags:
+            <label class="url">URL: <a href="{{ page['url'] }}">{{ page['url'] }}</a></label><br />
+            <label class="date">Date: {{ page['date'] }}</label><br />
+            <label class="rule">Associated rule: <a href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a></label><br />
+			<label class="tag_collection">Current tags:
                 <ul>
                 {% for counter in range (0, (page['tags']|length)) %}
-                    <li>
+                    <li class="tag">
                     {{page['tags'][counter].strip()}}{% endfor %}
                     </li>
                 </ul></label>
@@ -42,6 +42,6 @@
   </script>
         </form>
         </div>
-<a href="../pages">View all pages.</a>
+<a href="../pages" rel="collection">View all pages.</a>
 </body>
 </html>
