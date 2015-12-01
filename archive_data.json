@@ -1,0 +1,55 @@
+{ "@context":
+  { "helpdesk": "https://rawgit.com/sils-webinfo/helpdesk/master/vocab.ttl#",
+    "helprequests":
+    { "@id": "http://www.w3.org/2000/01/rdf-schema#member",
+      "@container": "@index"
+    },
+    "title": "http://schema.org/name",
+    "description": "http://schema.org/description",
+    "from": "http://schema.org/creator",
+    "time": "http://schema.org/dateCreated",
+    "comments": "http://schema.org/comment"
+  },
+  "@id": "requests",
+  "archive_entry":
+  { "fhs6jo" :
+    { "name" : "Courses",
+      "target_URI" : "sils.unc.edu/courses",
+      "ip_address" : "152.2.217.110",
+      "http_method" : "GET",
+      "http_response" : "200",
+      "content_type" : "text/html",
+      "content_size" : "250KB",
+      "date_captured" : "2014-10-13T12:00:4",
+      "date_modified" : "2014-10-12T12:00:4",
+      "refers_to" : "/fhs6jo",
+      "recordID" : "fhs6jo_1"
+    },
+    "dig73h":
+    { "name" : "The New York Times - Breaking News",
+      "target_URI" : "http://www.nytimes.com/",
+      "ip_address" : "170.149.161.130",
+      "http_method" : "GET",
+      "http_response" : "200",
+      "content_type" : "text/html",
+      "content_size" : "1.9MB",
+      "date_captured" : "2014-10-13T12:00:4",
+      "date_modified" : "2014-10-12T12:00:4",
+      "refers_to" : "/dig73h",
+      "recordID" : "dig73h_1"
+    },
+    "0f4uqv":
+    { "name" : "Courses",
+      "target_URI" : "sils.unc.edu/courses",
+      "ip_address" : "152.2.217.110",
+      "http_method" : "GET",
+      "http_response" : "200",
+      "content_type" : "text/html",
+      "content_size" : "250KB",
+      "date_captured" : "2014-10-13T12:00:4",
+      "date_modified" : "2014-10-12T12:00:4",
+      "refers_to" : "/0f4uqv",
+      "recordID" : "0f4uqv_1"
+    }
+  }
+}

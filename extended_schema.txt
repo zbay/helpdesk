@@ -1,0 +1,13 @@
+Type WebArchive
+	Properties
+		Name- Text, Human readable name of the webpage
+		TargetUri- URL being requested for archiving
+		DateCaptured- ISO 8601, date when crawled
+		DateModified- ISO 8601, date the crawled page was last modified
+		IPAddress- Text
+		HTTPMethod- GET
+		HTTPResponse- 200/404/501
+		ContentType- MimeType, HTML/XML/JSON
+		ContentSize
+		RefersTo- URI, Archive container for rule
+    RecordID- UUID for archived content
