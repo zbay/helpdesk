@@ -6,7 +6,11 @@
 <div style="background-color:lightgray; padding:5px;">
 <h1>Edit rule:</h1>
 <form class="rule-editor" method="patch">
-            URL: <a href="{{ rule['url'] }}">{{ rule['url'] }}</a><br />
+<span itemscope itemtype="http://schema.org/Action">
+			<span itemscope itemprop="object" itemtype="https://schema.org/WebPage"> <!-- The object of the action, in this case a webpage -->
+            URL: <a itemprop="url" href="{{ rule['url'] }}">{{ rule['url'] }}</a></span>
+			Start date: <time itemprop="startDate" datetime="{{rule['startDate']}}">{{rule['startDate']}}</time>
+			<br />
 			<label>Frequency: <select name="frequency">
 				<option value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
 				<option value="daily" {% if rule['frequency'] == 'daily' %} selected {% endif %}>Daily</option>
@@ -14,7 +18,8 @@
 				<option value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
 			</select></label><br />
 			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true" {% if rule['getLinks'] == 'true' %} checked {% endif %}>Yes</input> <input type="radio" name="getLinks" value="false" {% if rule['getLinks'] == 'false' %} checked {% endif %}>No</input></label><br />
-			<label>Description:<textarea name="description">{{ rule['description'] }}</textarea></label>
+			<label itemprop="description">Description:<textarea name="description">{{ rule['description'] }}</textarea></label>
+</span>
 			<div><input class="update" type="submit" value="Modify rule" id="rule-confirm"/></div>
 	 <script>
     var form = document.querySelector('form.rule-editor');
@@ -34,6 +39,6 @@
   </script>
         </form>
 	</div>
-<a href="../rules">View all rules.</a>
+<a href="../rules" rel="collection">View all rules.</a>
 </body>
 </html>
