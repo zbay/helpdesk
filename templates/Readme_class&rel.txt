@@ -30,7 +30,7 @@ rel attributes:
 
 3. rule-list.html
 class attributes:
-(1) title: Describes title of the page
+(1) title: Describes title of this page
 (2) rule_collection: Describes the container of rule list
 (3) rule: Indicates each rule in rule list
 (4) date: Describes the date of archiving rule
@@ -41,3 +41,13 @@ class attributes:
 rel attributes:
 (1) alternate: alternate resource 
 (2) page_collection: link to a collection of archived pages
+
+4. page-list.html
+class attributes:
+(1) title: title: Describes title of this page
+(2) page_collection: Describes the container of page list
+(3) page: Indicates each page in the page list
+(4) date: Describes the date of archiving page
+
+rel attributes:
+(1) alternate: alternate resource

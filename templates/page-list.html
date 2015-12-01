@@ -2,11 +2,11 @@
 <link rel="alternate" type="application/json" href="archivedPages.json">
 <title>Archived Pages</title>
 <div>
-<h1>Archived Pages</h1>
-<ul>
+<h1 class="title">Archived Pages</h1>
+<ul class="page_collection">
 {% for page in pages %}
     <li>
-        <a href="{{ 'page/' + page[0] }}">{{ page[1]['url'] }}</a>: {{ page[1]['date'] }}
+        <a href="{{ 'page/' + page[0] }}" class="page">{{ page[1]['url'] }}</a>: <span class="date">{{ page[1]['date'] }}</span>
     </li>
 {% endfor %}
 </ul>
