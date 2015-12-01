@@ -1,17 +1,5 @@
-{ "@context":
-  { "helpdesk": "https://rawgit.com/sils-webinfo/helpdesk/master/vocab.ttl#",
-    "helprequests":
-    { "@id": "http://www.w3.org/2000/01/rdf-schema#member",
-      "@container": "@index"
-    },
-    "title": "http://schema.org/name",
-    "description": "http://schema.org/description",
-    "from": "http://schema.org/creator",
-    "time": "http://schema.org/dateCreated",
-    "comments": "http://schema.org/comment"
-  },
-  "@id": "requests",
-  "archive_entry":
+{
+  "archived_entries":
   { "fhs6jo" :
     { "name" : "Courses",
       "target_URI" : "sils.unc.edu/courses",
