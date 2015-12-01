@@ -11,7 +11,8 @@
 <div style="background-color:lightgray; padding:5px;">
 <h2 class="func_des">Edit page description and tags:</h2>
 <form class="metadata-changer" method="patch">
-            <label class="url">URL: <a href="{{ page['url'] }}">{{ page['url'] }}</a></label><br />
+	<span itemscope itemtype="http://schema.org/WebPage">
+            <label class="url">URL: <a itemprop="url" href="{{ page['url'] }}">{{ page['url'] }}</a></label><br />
             <label class="date">Date: {{ page['date'] }}</label><br />
             <label class="rule">Associated rule: <a href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a></label><br />
 			<label class="tag_collection">Current tags:
@@ -22,8 +23,8 @@
                     </li>
                 </ul></label>
             <label>Add tags (separate with semicolons): <textarea name="tags"></textarea></label><br />
-			<label>Description: <textarea name="description">{{ page['description'] }}</textarea></label>
-			<div><input class="update" type="submit" value="Save changes" id="rule-confirm"/></div>
+			<label>Description: <textarea itemprop="description" name="description">{{ page['description'] }}</textarea></label>
+			<div><input class="update" type="submit" value="Save changes" id="rule-confirm"/></div></span></form>
              <script>
     var form = document.querySelector('form.metadata-changer');
     var button = document.querySelector('form.metadata-changer input.update');
@@ -40,7 +41,6 @@
       request.send(new FormData(form));
     }, false);
   </script>
-        </form>
         </div>
 <a href="../pages" rel="collection">View all pages.</a>
 </body>

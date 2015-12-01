@@ -2,39 +2,43 @@
 <link rel="alternate" type="application/json" href="archiveRules.json">
 <title>Archiving Rule</title>
 <body>
-  <h1 class="rule_id">Rule ID: {{ rule['@id'][5:] }}</h1>
-  <div style="background-color:lightgray; padding:5px;">
-    <h1 class="func_des">Edit rule:</h1>
-    <form class="rule-editor" method="patch">
-      URL: <a href="{{ rule['url'] }}">{{ rule['url'] }}</a><br />
-      <label>Frequency: <select name="frequency">
-        <option value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
-        <option value="daily" {% if rule['frequency'] == 'daily' %} selected {% endif %}>Daily</option>
-        <option value="weekly" {% if rule['frequency'] == 'weekly' %} selected {% endif %}>Weekly</option>
-        <option value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
-      </select>
-    </label><br>
-      <label>Archive the links on the page?: <input type="radio" name="getLinks" value="true" {% if rule['getLinks'] == 'true' %} checked {% endif %}>Yes</input> <input type="radio" name="getLinks" value="false" {% if rule['getLinks'] == 'false' %} checked {% endif %}>No</input></label><br />
-      <label>Description:<textarea name="description" class="url_des">{{ rule['description'] }}</textarea></label>
-      <div><input class="update" type="submit" value="Modify rule" id="rule-confirm"/></div>
-      <script>
-      var form = document.querySelector('form.rule-editor');
-      var button = document.querySelector('form.rule-editor input.update');
-      button.addEventListener('click', function (event) {
-        event.preventDefault();
-        var request = new XMLHttpRequest();
-        request.open('PATCH', window.location.pathname);
-        request.onreadystatechange = function () {
-          if (XMLHttpRequest.DONE === request.readyState
+<h1>Rule ID: {{ rule['@id'][5:] }}</h1>
+<div style="background-color:lightgray; padding:5px;">
+<h1>Edit rule:</h1>
+<form class="rule-editor" method="patch">
+<span itemscope itemtype="http://schema.org/Action">
+			<span itemscope itemprop="object" itemtype="https://schema.org/WebPage"> <!-- The object of the action, in this case a webpage -->
+            URL: <a itemprop="url" href="{{ rule['url'] }}">{{ rule['url'] }}</a></span>
+			Start date: <time itemprop="startDate" datetime="{{rule['startDate']}}">{{rule['startDate']}}</time>
+			<br />
+			<label>Frequency: <select name="frequency">
+				<option value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
+				<option value="daily" {% if rule['frequency'] == 'daily' %} selected {% endif %}>Daily</option>
+				<option value="weekly" {% if rule['frequency'] == 'weekly' %} selected {% endif %}>Weekly</option>
+				<option value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
+			</select></label><br />
+			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true" {% if rule['getLinks'] == 'true' %} checked {% endif %}>Yes</input> <input type="radio" name="getLinks" value="false" {% if rule['getLinks'] == 'false' %} checked {% endif %}>No</input></label><br />
+			<label itemprop="description">Description:<textarea name="description">{{ rule['description'] }}</textarea></label>
+</span>
+			<div><input class="update" type="submit" value="Modify rule" id="rule-confirm"/></div>
+	 <script>
+    var form = document.querySelector('form.rule-editor');
+    var button = document.querySelector('form.rule-editor input.update');
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var request = new XMLHttpRequest();
+      request.open('PATCH', window.location.pathname);
+      request.onreadystatechange = function () {
+        if (XMLHttpRequest.DONE === request.readyState
             && 200 === request.status) {
-            window.location.reload(true);
+          window.location.reload(true);
         }
       }
       request.send(new FormData(form));
     }, false);
-      </script>
-    </form>
-  </div>
-  <a href="../rules" rel="collection">View all rules.</a>
+  </script>
+        </form>
+	</div>
+<a href="../rules" rel="collection">View all rules.</a>
 </body>
 </html>
