@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response, redirect
+from flask import Flask, render_template, make_response, redirect # add urllib or urllib.request
 from flask.ext.restful import Api, Resource, reqparse, abort
 
 import json
@@ -84,6 +84,7 @@ def render_rule_as_html(rule):
         frequencies=reversed(list(enumerate(FREQUENCIES))))
 
 def render_page_as_html(page):
+    #load JSON data, pass that on as an argument through render_page_as_html
     return render_template(
         'page.html',
         page=page,
