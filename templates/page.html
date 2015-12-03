@@ -15,6 +15,7 @@
             <label class="url">URL: <a itemprop="url" href="{{ page['url'] }}">{{ page['url'] }}</a></label><br />
             <label class="date">Date: {{ page['date'] }}</label><br />
             <label class="rule">Associated rule: <a href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a></label><br />
+            <label class="wayback_url">URL archived in Wayback Machine: <a href="{{ page['wayback_url'] }}">{{ page['wayback_url'] }}</a></label><br />
 			<label class="tag_collection">Current tags:
                 <ul>
                 {% for counter in range (0, (page['tags']|length)) %}
