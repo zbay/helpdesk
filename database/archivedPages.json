@@ -7,7 +7,8 @@
 	"date": "2015-10-13T12:50:4",
 	"tags": ["google", "search", "homepage", "alphabet"],
 	"description": "Google's homepage on 10/13/2015 with a spooky Friday the 13th doodle",
-	 "ruleID":"i32cde"
+	 "ruleID":"i32cde",
+	 "wayback_url":""
 },
 "j5ir8t": {
 	"@id": "page/j5ir8t",
@@ -15,7 +16,8 @@
 "date": "2015-10-18T10:00:4",
 "tags": ["yahoo", "search", "homepage"],
 "description": "Yahoo's homepage on 10/18/15",
-	"ruleID":"m4kla9"
+	"ruleID":"m4kla9",
+	"wayback_url":""
 },
 "j6qwef": {
 	"@id": "page/j6qwef",
@@ -23,7 +25,8 @@
 "date": "2014-10-18T10:00:4",
 "tags": ["bing", "microsoft", "search", "homepage"],
 "description": "Bing's homepage on 10/18/2014",
-	"ruleID": "4ijrw0"
+	"ruleID": "4ijrw0",
+	"wayback_url":""
 },
 "pwd5j9": {
 	"@id": "page/pwd5j9",
@@ -31,7 +34,8 @@
 "date": "2014-10-11T10:00:4",
 "tags": ["google", "search", "homepage", "alphabet"],
 "description": "Google's homepage on 10/11/2014 with that confusing doodle",
-	 "ruleID":"i32cde"
+	 "ruleID":"i32cde",
+	 "wayback_url":""
 },
 "1ji78o": {
 	"@id": "page/1ji78o",
@@ -39,7 +43,8 @@
 "date": "2015-11-18T10:00:4",
 "tags": ["yahoo", "search", "homepage"],
 "description": "Yahoo's homepage on 11/18/2015",
-	"ruleID":"m4kla9"
+	"ruleID":"m4kla9",
+	"wayback_url":""
 }
 }
 }
