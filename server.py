@@ -1,6 +1,7 @@
-from flask import Flask, render_template, make_response, redirect # add urllib or urllib.request
+from flask import Flask, render_template, make_response, redirect
 from flask.ext.restful import Api, Resource, reqparse, abort
 
+import urllib
 import json
 import string
 import random
@@ -74,6 +75,18 @@ def filter_and_sort_pages(query='', sort_by='date'):
     filtered_pages = filter(matches_query, page_data['archivedPages'].items())
 
     return sorted(filtered_pages, key=get_sort_value, reverse=True)
+
+    #Extract url archived by Internet Archive Wayback Machine
+def archived_url_wayback(url):
+    wb_url="http://archive.org/wayback/available?url="+url
+    response=urllib.urlopen(wb_url)
+    wb_data=json.loads(response.read())
+    if(wb_data['archived_snapshots']=={}):
+      return "Not exist"
+    else:
+        return wb_data['archived_snapshots']["closest"]["url"]
+
+
 
 # Given the data for a help request, generate an HTML representation
 # of that help request.
@@ -179,10 +192,12 @@ class Page(Resource):
     # respond with a 404, otherwise respond with an HTML representation.
     def get(self, page_id):
         error_if_page_not_found(page_id)
-        print page_data['archivedPages'][page_id]['tags'][0]
+        # print page_data['archivedPages'][page_id]['tags'][0]
+        archived_page=page_data['archivedPages'][page_id]
+        archived_page['wayback_url'] = archived_url_wayback(archived_page['url'])
         return make_response(
-            render_page_as_html(
-                page_data['archivedPages'][page_id]), 200)
+            render_page_as_html(archived_page), 200)
+
 
     # If a help request with the specified ID does not exist,
     # respond with a 404, otherwise update the help request and respond
