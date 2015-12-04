@@ -16,8 +16,9 @@ To run it:
    ```
    
 Readme requirements:
-A. The attribute values used to describe our application flow
-   class and rel attributes:
+**A. The attribute values used to describe our application flow**
+
+class and rel attributes:
 
 1. rule.html
 
@@ -115,9 +116,9 @@ rel attributes:
 (1) alternate: alternate resource
 
 
-2. The types and properties used to describe our data:
+**B. The types and properties used to describe our data:**
 
-   A. Metadata for the archived pages and the archiving criteria are stored in .json files in the "database" folder.
+   1. Metadata for the archived pages and the archiving criteria are stored in .json files in the "database" folder.
    
-   B. Pages (under the page.html template) and rules (under the rule.html template) are described with HTML microdata. ADD      DETAILS ONCE ALEX IS DONE.
+   2. Pages (under the page.html template) and rules (under the rule.html template) are described with HTML microdata. ADD      DETAILS ONCE ALEX IS DONE.
    
