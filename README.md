@@ -1,6 +1,4 @@
-This is an example of a simple web API implemented using
-[Flask](http://flask.pocoo.org/) and
-[Flask-RESTful](http://flask-restful.readthedocs.org/en/latest/).
+Here is our final project for [INLS 620](https://aeshin.org/teaching/inls-620/2015/fa/). We were tasked with creating a basic information system, using Flask, that archives web pages.
 
 To run it:
 
@@ -10,37 +8,17 @@ To run it:
    ``` 
    [Flask](http://flask.pocoo.org/docs/0.10/installation/#installation)
    and
-   [Flask-RESTful](http://flask-restful.readthedocs.org/en/latest/installation.html) to run `server.py` 
-   and [RDFLib](http://rdflib.readthedocs.org/en/latest/) and [JSONLD for RDFLib](https://github.com/RDFLib/rdflib-jsonld) to run the `extractdata.py` script or the `another-server.py` service.
+   [Flask-RESTful](http://flask-restful.readthedocs.org/en/latest/installation.html) to run `server.py`.
 
-2. Run the helpdesk server:
+2. Run the webarchive server:
    ```
    $ python server.py
    ```
-   Alternatively, you can access the service running here: http://aeshin.org:5555/requests
    
-3. Use the `extractdata.py` script to examine the triples found in various representations of the helpdesk resources.
-   
-   RDFa/microdata for the list of help requests:
-   ```
-   $ python extractdata.py http://aeshin.org:5555/requests
-   ```
-   JSON-LD for the list of help requests:
-   ```
-   $ python extractdata.py http://aeshin.org:5555/requests.json
-   ```
-   RDFa/microdata for an individual help request:
-   ```
-   $ python extractdata.py http://aeshin.org:5555/request/fhs6jo
-   ```
-   JSON-LD for an individual help request:
-   ```
-   $ python extractdata.py http://aeshin.org:5555/request/fhs6jo.json
-   ```
-
-4. Run the contacts server for an example of a service calling another service:
-   ```
-   $ python another-server.py
-   ```
-   Alternatively, you can access the service running here: http://aeshin.org:5556/contacts.json
+Readme requirements:
+1. The attribute values used to describe our application flow
+   Cut and paste from Wanchun's.
+2. The types and properties used to describe our data:
+   A. Metadata for the archived pages and the archiving criteria are stored in .json files in the "database" folder.
+   B. Pages (under the page.html template) and rules (under the rule.html template) are described with HTML microdata. ADD      DETAILS ONCE ALEX IS DONE.
    
