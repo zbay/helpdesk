@@ -16,6 +16,7 @@ To run it:
    ```
    
 Readme requirements:
+
 **A. The attribute values used to describe our application flow**
 
 class and rel attributes:
@@ -114,6 +115,7 @@ class attributes:
 rel attributes:
 
 (1) alternate: alternate resource
+
 
 
 **B. The types and properties used to describe our data:**
