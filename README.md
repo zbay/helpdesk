@@ -110,6 +110,10 @@ class and rel attributes:
       (3) page: Indicates each page in the page list
 
       (4) date: Describes the date of archiving page
+      
+      (5) func_des: Describes the function of the contents below
+      
+      (6) search_field: Indicates an input field for searching
 
 
    rel attributes:
