@@ -23,98 +23,98 @@ class and rel attributes:
 
 1. rule.html
 
-class attributes:
+   class attributes:
 
-(1) rule_id: Describes unique identifier for each rule
+      (1) rule_id: Describes unique identifier for each rule
 
-(2) func_des: Describes the function of contents below
+      (2) func_des: Describes the function of contents below
 
-(3) rule-editor: Indicates the form to edit one specific rule
+      (3) rule-editor: Indicates the form to edit one specific rule
 
-(4) rule_des: Description of one specific url
+      (4) rule_des: Description of one specific url
 
-(5) update: Indicates the function of button
+      (5) update: Indicates the function of button
 
 
-rel attributes:
+   rel attributes:
 
-(1) alternate: alternate resource 
+      (1) alternate: alternate resource 
 
-(2) collection: link to a collection of rules
+      (2) collection: link to a collection of rules
 
 
 2. page.html
 
-class attributes:
+   class attributes:
 
-(1) page_id:Unique identifier for each archived page
+      (1) page_id:Unique identifier for each archived page
 
-(2) func_des:Describes the function of contents below
+      (2) func_des:Describes the function of contents below
 
-(3) metadata-changer: Indicates the form to change metadata-changer
+      (3) metadata-changer: Indicates the form to change metadata-changer
 
-(4) url: Describes page url
+      (4) url: Describes page url
 
-(5) date: Describes date to archive the page
+      (5) date: Describes date to archive the page
 
-(6) rule: Describes associated rule
+      (6) rule: Describes associated rule
 
-(7) tag_collection: includes all tags for certain page
+      (7) tag_collection: includes all tags for certain page
 
-(8) tag: indicates each tag for certain page
+      (8) tag: indicates each tag for certain page
 
-(9) update: indicates action to update tags or page description
+      (9) update: indicates action to update tags or page description
 
 
-rel attributes:
+   rel attributes:
 
-(1) alternate: alternate resource 
+      (1) alternate: alternate resource 
 
-(2) collection: link to a collection of pages
+      (2) collection: link to a collection of pages
 
 
 3. rule-list.html
 
-class attributes:
+   class attributes:
 
-(1) title: Describes title of this page
+      (1) title: Describes title of this page
 
-(2) rule_collection: Describes the container of rule list
+      (2) rule_collection: Describes the container of rule list
 
-(3) rule: Indicates each rule in rule list
+      (3) rule: Indicates each rule in rule list
 
-(4) date: Describes the date of archiving rule
+      (4) date: Describes the date of archiving rule
 
-(5) func_des: Describes the function of contents below
+      (5) func_des: Describes the function of contents below
 
-(6) rule-maker: Indicates the form to create a new resource(rule)
+      (6) rule-maker: Indicates the form to create a new resource(rule)
 
-(7) create: Describes the action to create a new rule
+      (7) create: Describes the action to create a new rule
 
 
-rel attributes:
+   rel attributes:
 
-(1) alternate: alternate resource 
+      (1) alternate: alternate resource 
 
-(2) page_collection: link to a collection of archived pages
+      (2) page_collection: link to a collection of archived pages
 
 
 4. page-list.html
 
-class attributes:
+   class attributes:
 
-(1) title: title: Describes title of this page
+      (1) title: title: Describes title of this page
 
-(2) page_collection: Describes the container of page list
+      (2) page_collection: Describes the container of page list
 
-(3) page: Indicates each page in the page list
+      (3) page: Indicates each page in the page list
 
-(4) date: Describes the date of archiving page
+      (4) date: Describes the date of archiving page
 
 
-rel attributes:
+   rel attributes:
 
-(1) alternate: alternate resource
+      (1) alternate: alternate resource
 
 
 
