@@ -2,7 +2,7 @@
 <link rel="alternate" type="application/json" href="archiveRules.json">
 <title>Archiving Rule</title>
 <body>
-<h1>Rule ID: {{ rule['@id'][5:] }}</h1>
+<h1>Rule ID: <span class="rule_id">{{ rule['@id'][5:] }}</span>></h1>
 <div style="background-color:lightgray; padding:5px;">
 <h1>Edit rule:</h1>
 <form class="rule-editor" method="patch">
@@ -18,7 +18,7 @@
 				<option value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
 			</select></label><br />
 			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true" {% if rule['getLinks'] == 'true' %} checked {% endif %}>Yes</input> <input type="radio" name="getLinks" value="false" {% if rule['getLinks'] == 'false' %} checked {% endif %}>No</input></label><br />
-			<label itemprop="description">Description:<textarea name="description">{{ rule['description'] }}</textarea></label>
+			<label itemprop="description">Description:<textarea name="description" class=""rule_des>{{ rule['description'] }}</textarea></label>
 </span>
 			<div><input class="update" type="submit" value="Modify rule" id="rule-confirm"/></div>
 	 <script>
