@@ -126,5 +126,26 @@ class and rel attributes:
 
    1. Metadata for the archived pages and the archiving criteria are stored in .json files in the "database" folder.
    
-   2. Pages (under the page.html template) and rules (under the rule.html template) are described with HTML microdata. ADD      DETAILS ONCE ALEX IS DONE.
+   2. Pages (under the page.html template)
+      Types
+         (1) WebPage/WebArchive - An extension of the WebPage type designed to describe web archive resources
+      
+      Properties
+         (1) url - Indicates the url of the item being crawled for inclusion in the web archive
+         (2) dateCrawled - a property of the WebArchive extension. Indicates the date on which the target URL was crawled
+         (3) archiveRule -  a property of the WebArchive extension. Indicates information about the rules governing web crawls
+         (4) alternateArchive - a property of the WebArchive extension. Indicates an alternative source for an archived webpage with the same target URL
+
+   3. Rule (under the rule.html template)
+      Types
+         (1) Action - Indicates that the web archive will perform an action
+         (2) WebPage - Indicates that a web page is involved with the action
+         (3) ChooseAction - Indicates that the user can choose a specific preference from a set of possible actions
+      
+      Properties
+         (1) object - Identifies the web page as the object of the action being commited
+         (2) url - Defines the url of the web page that is being acted on
+         (3) startDate - Indicates the date on which the action will begin
+         (4) actionOption - Identifies the individual different actions that are possible to choose
+         (5) description - Indicates a short description of the action being taken
    
