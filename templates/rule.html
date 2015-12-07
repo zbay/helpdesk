@@ -11,11 +11,11 @@
             URL: <a itemprop="url" href="{{ rule['url'] }}">{{ rule['url'] }}</a></span>
 			Start date: <time itemprop="startDate" datetime="{{rule['startDate']}}">{{rule['startDate']}}</time>
 			<br />
-			<label>Frequency: <select name="frequency">
-				<option value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
-				<option value="daily" {% if rule['frequency'] == 'daily' %} selected {% endif %}>Daily</option>
-				<option value="weekly" {% if rule['frequency'] == 'weekly' %} selected {% endif %}>Weekly</option>
-				<option value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
+			<label>Frequency: <select itemscope itemtype="https://schema.org/ChooseAction" name="frequency">
+				<option itemprop="actionOption" value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
+				<option itemprop="actionOption" value="daily" {% if rule['frequency'] == 'daily' %} selected {% endif %}>Daily</option>
+				<option itemprop="actionOption" value="weekly" {% if rule['frequency'] == 'weekly' %} selected {% endif %}>Weekly</option>
+				<option itemprop="actionOption" value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
 			</select></label><br />
 			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true" {% if rule['getLinks'] == 'true' %} checked {% endif %}>Yes</input> <input type="radio" name="getLinks" value="false" {% if rule['getLinks'] == 'false' %} checked {% endif %}>No</input></label><br />
 			<label itemprop="description">Description:<textarea name="description" class=""rule_des>{{ rule['description'] }}</textarea></label>
