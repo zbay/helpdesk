@@ -11,11 +11,11 @@
 <div style="background-color:lightgray; padding:5px;">
 <h2 class="func_des">Edit page description and tags:</h2>
 <form class="metadata-changer" method="patch">
-	<span itemscope itemtype="http://schema.org/WebPage">
+	<span itemscope itemtype="http://schema.org/WebPage/WebArchive">
             <label class="url">URL: <a itemprop="url" href="{{ page['url'] }}">{{ page['url'] }}</a></label><br />
-            <label class="date">Date: {{ page['date'] }}</label><br />
-            <label class="rule">Associated rule: <a href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a></label><br />
-            <label class="wayback_url">URL archived in Wayback Machine: <a href="{{ page['wayback_url'] }}">{{ page['wayback_url'] }}</a></label><br />
+            <label itemprop="dateCrawled" class="date">Date: {{ page['date'] }}</label><br />
+            <label class="rule">Associated rule: <a itemprop="archiveRule" href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a></label><br />
+            <label class="wayback_url">URL archived in Wayback Machine: <a itemprop="alternateArchive" href="{{ page['wayback_url'] }}">{{ page['wayback_url'] }}</a></label><br />
 			<label class="tag_collection">Current tags:
                 <ul>
                 {% for counter in range (0, (page['tags']|length)) %}
