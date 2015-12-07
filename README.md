@@ -132,6 +132,7 @@ class and rel attributes:
          (1) WebPage/WebArchive - An extension of the WebPage type designed to describe web archive resources
       
       Properties
+      
          (1) url - Indicates the url of the item being crawled for inclusion in the web archive
 
          (2) dateCrawled - a property of the WebArchive extension. Indicates the date on which the target URL was crawled
