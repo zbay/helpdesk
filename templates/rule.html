@@ -5,21 +5,71 @@
 <h1>Rule ID: <span class="rule_id">{{ rule['@id'][5:] }}</span></h1>
 <div style="background-color:lightgray; padding:5px;">
 <h1 class="func_des">Edit rule:</h1>
-<form class="rule-editor" method="patch">
-<span itemscope itemtype="http://schema.org/Action">
-			<span itemscope itemprop="object" itemtype="https://schema.org/WebPage"> <!-- The object of the action, in this case a webpage -->
-            URL: <a itemprop="url" href="{{ rule['url'] }}">{{ rule['url'] }}</a></span>
-			Start date: <time itemprop="startDate" datetime="{{rule['startDate']}}">{{rule['startDate']}}</time>
+<form class="rule-editor" method="post">
+<div itemscope itemtype="http://bib.schema.org/Collection">
+URL: <a itemprop="http://bib.schema.org/isBasedOnUrl" href="{{ rule['url'] }}">{{ rule['url'] }}</a><br>
+			Start date: <time itemprop="dateCreated" datetime="{{rule['startDate']}}">{{rule['startDate']}}</time>
 			<br />
-			<label>Frequency: <select itemscope itemtype="https://schema.org/ChooseAction" name="frequency">
-				<option itemprop="actionOption" value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
-				<option itemprop="actionOption" value="daily" {% if rule['frequency'] == 'daily' %} selected {% endif %}>Daily</option>
-				<option itemprop="actionOption" value="weekly" {% if rule['frequency'] == 'weekly' %} selected {% endif %}>Weekly</option>
-				<option itemprop="actionOption" value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
-			</select></label><br />
-			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true" {% if rule['getLinks'] == 'true' %} checked {% endif %}>Yes</input> <input type="radio" name="getLinks" value="false" {% if rule['getLinks'] == 'false' %} checked {% endif %}>No</input></label><br />
-			<label itemprop="description">Description:<textarea name="description" class=""rule_des>{{ rule['description'] }}</textarea></label>
-</span>
+<fieldset>
+  <legend>Frequency: </legend>
+  <label>
+    <input type="radio" name="frequency" value="hourly"
+{% if rule['frequency'] == 'hourly' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-H">Hourly
+{% else %}
+> Hourly
+{% endif %}
+  </label>
+  <label>
+    <input type="radio" name="frequency" value="daily"
+{% if rule['frequency'] == 'daily' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-D">Daily
+{% else %}
+> Daily
+{% endif %}
+  </label>
+  <label>
+    <input type="radio" name="frequency" value="weekly"
+{% if rule['frequency'] == 'weekly' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-W">Weekly
+{% else %}
+> Weekly
+{% endif %}
+  </label>
+  <label>
+    <input type="radio" name="frequency" value="monthly"
+{% if rule['frequency'] == 'monthly' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-M">Monthly
+{% else %}
+> Monthly
+{% endif %}
+  </label>
+  <label>
+    <input type="radio" name="frequency" value="yearly"
+{% if rule['frequency'] == 'yearly' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-A">Yearly
+{% else %}
+> Yearly
+{% endif %}
+  </label>
+</fieldset>
+<br />
+<fieldset>
+  <legend>Archive the links on the page?:</legend>
+  <label> <input type="radio" name="getLinks" value="true"
+           {% if rule['getLinks'] %} checked {% endif %}> Yes
+  </label>
+  <label> <input type="radio" name="getLinks" value="false"
+           {% if not rule['getLinks'] %} checked {% endif %}> No </label>
+</fieldset>
+<br />
+			<label itemprop="description">Description:<textarea name="description" class="rule_des">{{ rule['description'] }}</textarea></label>
+</div>
 			<div><input class="update" type="submit" value="Modify rule" id="rule-confirm"/></div>
 	 <script>
     var form = document.querySelector('form.rule-editor');
@@ -39,6 +89,6 @@
   </script>
         </form>
 	</div>
-<a href="../rules" rel="collection">View all rules.</a>
+<a href="../rules" rel="https://aeshin.org/teaching/inls-620/2015/fa/webarchive/collection">View all rules.</a>
 </body>
 </html>

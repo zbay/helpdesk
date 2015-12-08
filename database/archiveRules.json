@@ -5,7 +5,7 @@
 			"url": "http://www.google.com",
 			"frequency": "daily",
 			"getLinks": false,
-			"startDate": "2014-10-13T12:50:4",
+			"startDate": "2014-10-13T12:50:40",
 			"description": "#1 search engine"
 		},
 		"m4kla9": {
@@ -13,7 +13,7 @@
 			"url": "http://www.yahoo.com",
 			"frequency": "weekly",
 			"getLinks": true,
-			"startDate": "2014-10-18T10:00:4",
+			"startDate": "2014-10-18T10:00:40",
 			"description": "#2 search engine"
 		},
 		"4ijrw0": {
@@ -21,7 +21,7 @@
 			"url": "http://www.bing.com",
 			"frequency": "yearly",
 			"getLinks": true,
-			"startDate": "2014-10-25T11:00:4",
+			"startDate": "2014-10-25T11:00:40",
 			"description": "#3 search engine"
 		}
 	}

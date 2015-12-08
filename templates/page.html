@@ -10,22 +10,22 @@
 <h1 class="page_id">Page ID: {{ page['@id'][5:] }}</h1>
 <div style="background-color:lightgray; padding:5px;">
 <h2 class="func_des">Edit page description and tags:</h2>
-<form class="metadata-changer" method="patch">
-	<span itemscope itemtype="http://schema.org/WebPage/WebArchive">
-            <label class="url">URL: <a itemprop="url" href="{{ page['url'] }}">{{ page['url'] }}</a></label><br />
-            <label itemprop="dateCrawled" class="date">Date: {{ page['date'] }}</label><br />
-            <label class="rule">Associated rule: <a itemprop="archiveRule" href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a></label><br />
-            <label class="wayback_url">URL archived in Wayback Machine: <a itemprop="alternateArchive" href="{{ page['wayback_url'] }}">{{ page['wayback_url'] }}</a></label><br />
-			<label class="tag_collection">Current tags:
+<form class="metadata-changer" method="post">
+	<div itemscope itemtype="http://schema.org/WebPage/WebArchive">
+            <label class="url">URL: <a itemprop="isBasedOnUrl" href="{{ page['url'] }}">{{ page['url'] }}</a></label><br />
+            <label itemprop="dateCreated" class="date">Date: {{ page['date'] }}</label><br />
+            <label class="rule">Associated rule: <a itemprop="isPartOf" href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a></label><br />
+            <label class="wayback_url">URL archived in Wayback Machine: <a itemprop="http://www.w3.org/2000/01/rdf-schema#seeAlso" href="{{ page['wayback_url'] }}">{{ page['wayback_url'] }}</a></label><br />
+			<div class="tag_collection">Current tags:
                 <ul>
                 {% for counter in range (0, (page['tags']|length)) %}
                     <li class="tag">
                     {{page['tags'][counter].strip()}}{% endfor %}
                     </li>
-                </ul></label>
+                </ul></div>
             <label>Add tags (separate with semicolons): <textarea name="tags"></textarea></label><br />
 			<label>Description: <textarea itemprop="description" name="description">{{ page['description'] }}</textarea></label>
-			<div><input class="update" type="submit" value="Save changes" id="rule-confirm"/></div></span></form>
+			<div><input class="update" type="submit" value="Save changes" id="rule-confirm"/></div></div></form>
              <script>
     var form = document.querySelector('form.metadata-changer');
     var button = document.querySelector('form.metadata-changer input.update');
@@ -43,6 +43,6 @@
     }, false);
   </script>
         </div>
-<a href="../pages" rel="collection">View all pages.</a>
+<a href="../pages" rel="https://aeshin.org/teaching/inls-620/2015/fa/webarchive/collection">View all pages.</a>
 </body>
 </html>
