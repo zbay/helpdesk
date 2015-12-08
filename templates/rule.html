@@ -6,10 +6,9 @@
 <div style="background-color:lightgray; padding:5px;">
 <h1 class="func_des">Edit rule:</h1>
 <form class="rule-editor" method="post">
-<div itemscope itemtype="http://schema.org/Action">
-			<div itemscope itemprop="object" itemtype="https://schema.org/WebPage"> <!-- The object of the action, in this case a webpage -->
-            URL: <a itemprop="url" href="{{ rule['url'] }}">{{ rule['url'] }}</a></div>
-			Start date: <time itemprop="startDate" datetime="{{rule['startDate']}}">{{rule['startDate']}}</time>
+<div itemscope itemtype="http://bib.schema.org/Collection">
+URL: <a itemprop="http://bib.schema.org/isBasedOnUrl" href="{{ rule['url'] }}">{{ rule['url'] }}</a><br>
+			Start date: <time itemprop="dateCreated" datetime="{{rule['startDate']}}">{{rule['startDate']}}</time>
 			<br />
 			<label>Frequency: <select itemscope itemtype="https://schema.org/ChooseAction" name="frequency">
 				<option itemprop="actionOption" value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
