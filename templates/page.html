@@ -16,16 +16,16 @@
             <label itemprop="dateCrawled" class="date">Date: {{ page['date'] }}</label><br />
             <label class="rule">Associated rule: <a itemprop="archiveRule" href="../rule/{{ page['ruleID'] }}">{{ page['ruleID'] }}</a></label><br />
             <label class="wayback_url">URL archived in Wayback Machine: <a itemprop="alternateArchive" href="{{ page['wayback_url'] }}">{{ page['wayback_url'] }}</a></label><br />
-			<label class="tag_collection">Current tags:
+			<div class="tag_collection">Current tags:
                 <ul>
                 {% for counter in range (0, (page['tags']|length)) %}
                     <li class="tag">
                     {{page['tags'][counter].strip()}}{% endfor %}
                     </li>
-                </ul></label>
+                </ul></div>
             <label>Add tags (separate with semicolons): <textarea name="tags"></textarea></label><br />
 			<label>Description: <textarea itemprop="description" name="description">{{ page['description'] }}</textarea></label>
-			<div><input class="update" type="submit" value="Save changes" id="rule-confirm"/></div></span></form>
+			<div><input class="update" type="submit" value="Save changes" id="rule-confirm"/></div></div></form>
              <script>
     var form = document.querySelector('form.metadata-changer');
     var button = document.querySelector('form.metadata-changer input.update');
