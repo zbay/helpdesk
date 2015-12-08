@@ -13,14 +13,14 @@
 <div style="background-color:lightgray; padding:5px;">
 <h1 class="func_des">Add rule:</h1>
 <form class="rule-maker" method="post">
-            <label>URL (remember to include 'http://'): <input type="text" name="url"></input></label><br />
+            <label>URL (remember to include 'http://'): <input type="text" name="url"></label><br />
 			<label>Frequency: <select name="frequency">
 				<option value="hourly">Hourly</option>
 				<option value="daily">Daily</option>
 				<option value="weekly">Weekly</option>
 				<option value="monthly">Monthly</option>
 			</select></label><br />
-			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true">Yes</input> <input type="radio" name="getLinks" value="false" checked>No</input></label><br />
+			<label>Archive the links on the page?: <input type="radio" name="getLinks" value="true">Yes <input type="radio" name="getLinks" value="false" checked>No</label><br />
 			<label>Description:<textarea name="description"></textarea></label>
             <div><input type="submit" value="Create new rule" id="rule-confirm" class="create"/></div>
         </form>
