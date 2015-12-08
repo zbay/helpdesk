@@ -17,8 +17,6 @@
 				<option itemprop="actionOption" value="weekly" {% if rule['frequency'] == 'weekly' %} selected {% endif %}>Weekly</option>
 				<option itemprop="actionOption" value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
 			</select></label><br />
-			<label itemprop="description">Description:<textarea name="description" class=""rule_des>{{ rule['description'] }}</textarea></label>
-</span>
 <fieldset>
   <legend>Archive the links on the page?:</legend>
   <label> <input type="radio" name="getLinks" value="true"
@@ -28,6 +26,8 @@
            {% if rule['getLinks'] == 'false' %} checked {% endif %}> No </label>
 </fieldset>
 <br />
+			<label itemprop="description">Description:<textarea name="description" class="rule_des">{{ rule['description'] }}</textarea></label>
+</div>
 			<div><input class="update" type="submit" value="Modify rule" id="rule-confirm"/></div>
 	 <script>
     var form = document.querySelector('form.rule-editor');
