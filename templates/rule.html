@@ -10,12 +10,55 @@
 URL: <a itemprop="http://bib.schema.org/isBasedOnUrl" href="{{ rule['url'] }}">{{ rule['url'] }}</a><br>
 			Start date: <time itemprop="dateCreated" datetime="{{rule['startDate']}}">{{rule['startDate']}}</time>
 			<br />
-			<label>Frequency: <select itemscope itemtype="https://schema.org/ChooseAction" name="frequency">
-				<option itemprop="actionOption" value="hourly" {% if rule['frequency'] == 'hourly' %} selected {% endif %}>Hourly</option>
-				<option itemprop="actionOption" value="daily" {% if rule['frequency'] == 'daily' %} selected {% endif %}>Daily</option>
-				<option itemprop="actionOption" value="weekly" {% if rule['frequency'] == 'weekly' %} selected {% endif %}>Weekly</option>
-				<option itemprop="actionOption" value="monthly" {% if rule['frequency'] == 'monthly' %} selected {% endif %}>Monthly</option>
-			</select></label><br />
+<fieldset>
+  <legend>Frequency: </legend>
+  <label>
+    <input type="radio" name="frequency" value="hourly"
+{% if rule['frequency'] == 'hourly' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-H">Hourly
+{% else %}
+> Hourly
+{% endif %}
+  </label>
+  <label>
+    <input type="radio" name="frequency" value="daily"
+{% if rule['frequency'] == 'daily' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-D">Daily
+{% else %}
+> Daily
+{% endif %}
+  </label>
+  <label>
+    <input type="radio" name="frequency" value="weekly"
+{% if rule['frequency'] == 'weekly' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-W">Weekly
+{% else %}
+> Weekly
+{% endif %}
+  </label>
+  <label>
+    <input type="radio" name="frequency" value="monthly"
+{% if rule['frequency'] == 'monthly' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-M">Monthly
+{% else %}
+> Monthly
+{% endif %}
+  </label>
+  <label>
+    <input type="radio" name="frequency" value="yearly"
+{% if rule['frequency'] == 'yearly' %}
+checked>
+<link itemprop="http://purl.org/dc/terms/accrualPeriodicity" href="http://purl.org/linked-data/sdmx/2009/code#freq-A">Yearly
+{% else %}
+> Yearly
+{% endif %}
+  </label>
+</fieldset>
+<br />
 <fieldset>
   <legend>Archive the links on the page?:</legend>
   <label> <input type="radio" name="getLinks" value="true"
